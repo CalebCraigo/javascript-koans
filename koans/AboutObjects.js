@@ -6,14 +6,14 @@ describe("About Objects", function () {
     beforeEach(function () {
        megalomaniac = {  mastermind: "Joker", henchwoman: "Harley" };
     });
-
+// Joker is assigned to mastermind
     it("should confirm objects are collections of properties", function () {
-      expect(megalomaniac.mastermind).toBe(FILL_ME_IN);
+      expect(megalomaniac.mastermind).toBe("Joker");
     });
-
+//Harley is assigned to henchwoman, nothing is assigned to henchWoman
     it("should confirm that properties are case sensitive", function () {
-      expect(megalomaniac.henchwoman).toBe(FILL_ME_IN);
-      expect(megalomaniac.henchWoman).toBe(FILL_ME_IN);
+      expect(megalomaniac.henchwoman).toBe("Harley");
+      expect(megalomaniac.henchWoman).toBe(undefined);
     });
   });
 
@@ -29,7 +29,7 @@ describe("About Objects", function () {
     };
 
     var battleCry = megalomaniac.battleCry(4);
-    expect(FILL_ME_IN).toMatch(battleCry);
+    expect("They are Pinky and the Brain Brain Brain Brain").toMatch(battleCry);
   });
 
   it("should confirm that when a function is attached to an object, 'this' refers to the object", function () {
@@ -43,9 +43,10 @@ describe("About Objects", function () {
         return currentYear - this.birthYear;
       }
     };
-
-    expect(currentYear).toBe(FILL_ME_IN);
-    expect(megalomaniac.calculateAge()).toBe(FILL_ME_IN);
+//currentYear is pulling in the year from current Date
+//calculateAge is using birthyear and current year to calculate the age.
+    expect(currentYear).toBe(2019);
+    expect(megalomaniac.calculateAge()).toBe(49);
   });
 
   describe("'in' keyword", function () {
@@ -61,28 +62,28 @@ describe("About Objects", function () {
     it("should have the bomb", function () {
 
       var hasBomb = "theBomb" in megalomaniac;
-
-      expect(hasBomb).toBe(FILL_ME_IN);
+//theBomb has a value of true and hasBomb is equal to theBomb
+      expect(hasBomb).toBe(true);
     });
 
     it("should not have the detonator however", function () {
 
       var hasDetonator = "theDetonator" in megalomaniac;
-
-      expect(hasDetonator).toBe(FILL_ME_IN);
+//there is no object for theDetonator making it false.
+      expect(hasDetonator).toBe(false);
     });
   });
 
   it("should know that properties can be added and deleted", function () {
     var megalomaniac = { mastermind : "Agent Smith", henchman: "Agent Smith" };
-
-    expect("secretary" in megalomaniac).toBe(FILL_ME_IN);
-
+// object secretary has not be defined so returns false.
+    expect("secretary" in megalomaniac).toBe(false);
+//object secretary has been defined so returns true.
     megalomaniac.secretary = "Agent Smith";
-    expect("secretary" in megalomaniac).toBe(FILL_ME_IN);
-
+    expect("secretary" in megalomaniac).toBe(true);
+//object henchman has been deleted so returns false.
     delete megalomaniac.henchman;
-    expect("henchman" in megalomaniac).toBe(FILL_ME_IN);
+    expect("henchman" in megalomaniac).toBe(false);
   });
 
 
@@ -95,15 +96,17 @@ describe("About Objects", function () {
       var simpleCircle = new Circle(10);
       var colouredCircle = new Circle(5);
       colouredCircle.colour = "red";
-
-      expect(simpleCircle.colour).toBe(FILL_ME_IN);
-      expect(colouredCircle.colour).toBe(FILL_ME_IN);
+//simpleCircle.colour does not have a value so it returns undefined.
+//colouredCircle.colour has a value of red so it returns red.
+      expect(simpleCircle.colour).toBe(undefined);
+      expect(colouredCircle.colour).toBe('red');
 
       Circle.prototype.describe = function () {
         return "This circle has a radius of: " + this.radius;
       };
-
-      expect(simpleCircle.describe()).toBe(FILL_ME_IN);
-      expect(colouredCircle.describe()).toBe(FILL_ME_IN);
+//simpleCircle has a value of 10
+//colouredCircle has a value of 5
+      expect(simpleCircle.describe()).toBe("This circle has a radius of: 10");
+      expect(colouredCircle.describe()).toBe("This circle has a radius of: 5");
   });
 });
